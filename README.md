@@ -1,4 +1,6 @@
 
+#Petpaws
+Bu web uygulaması hayvan sahiplendirme sürecinin hızlandırılması için geliştirilmiştir. Uygulamanın düzgün bir şekilde çalışabilmesi için petpaws api projesinin ilk önce ayağa kaldırılması gerekmektedir. 
 
 ##Screenshots
 <img width="1191" alt="Ekran Resmi 2024-01-10 14 16 37" src="https://github.com/AtaberkYazici/PetPaws-Web/assets/76704190/23d0572a-9f90-427c-a8f4-cea7a89a6e74">
@@ -10,3 +12,4 @@
 <img width="1440" alt="Ekran Resmi 2024-01-10 18 33 29" src="https://github.com/AtaberkYazici/PetPaws-Web/assets/76704190/8fe780b0-ee28-4818-afb7-c931ce66e28c">
 <img width="1440" alt="Ekran Resmi 2024-01-10 19 34 48" src="https://github.com/AtaberkYazici/PetPaws-Web/assets/76704190/cfc1440e-7198-4813-8027-dce944bf3ede">
 <img width="1440" alt="Ekran Resmi 2024-01-10 19 34 55" src="https://github.com/AtaberkYazici/PetPaws-Web/assets/76704190/b72c332f-b61d-4e19-8ef8-7f809a0a0823">
+<img width="1440" alt="Ekran Resmi 2024-01-10 16 13 57" src="https://github.com/AtaberkYazici/PetPaws-Web/assets/76704190/0b2fc6d1-1756-408f-839e-d728472534ef">
