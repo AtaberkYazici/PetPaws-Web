@@ -1,0 +1,146 @@
+﻿@model AuthWeb.Models.CreatePost
+@{
+    string userEmail = ViewBag.UserEmail;
+}
+<h2>Create a New Animal</h2>
+<div class="col-8">
+    <form id="cihazForm" method="post">
+        <div class="form-group mb-3">
+            <label class="control-label">Image</label>
+            <input id="image" type="file" name="file" accept="image/*" required />
+            <span class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+            <label class="control-label">Name</label>
+            <input id="name" class="form-control" placeholder="Path to the image" />
+            <span class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label class="control-label">Type</label>
+            <input id="type" class="form-control" placeholder="Path to the image" />
+            <span class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label class="control-label">Age</label>
+            <input id="age" class="form-control" min="1" />
+            <span class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label class="control-label">Extra Explanations</label>
+            <textarea id="details" class="form-control" placeholder="E.g., 5 yaşında çok sıcakkanlı ve evcil "></textarea>
+            <span class="text-danger"></span>
+        </div>
+
+        <div class="form-check">
+            <input type="checkbox" name="Vaccines" value="kuduz" class="form-check-input" />
+            <label class="form-check-label">Kuduz</label>
+        </div>
+
+        <div class="form-check">
+            <input type="checkbox" name="Vaccines" value="karma" class="form-check-input" />
+            <label class="form-check-label">Karma</label>
+        </div>
+
+        <div class="form-check">
+            <input type="checkbox" name="Vaccines" value="parazit" class="form-check-input" />
+            <label class="form-check-label">Parazit</label>
+        </div>
+
+        <input id="username" type="hidden" value="@userEmail" />
+        <button id="kaydetilk" type="submit" class="w-100 btn btn-lg btn-primary">Create</button>
+
+
+    </form>
+</div>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+
+<script>// Form elementini al
+    const firebaseConfig = {
+        apiKey: "AIzaSyCwkEYL7wncj6ih1XuBfrw-5oUM_90I2PM",
+        authDomain: "petpaws-6b2e3.firebaseapp.com",
+        projectId: "petpaws-6b2e3",
+        storageBucket: "petpaws-6b2e3.appspot.com",
+        messagingSenderId: "439818679182",
+        appId: "1:439818679182:web:824c5162f6a4c4c06d2adf",
+        measurementId: "G-KE792TQRCC"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    document.getElementById("cihazForm").addEventListener("submit", async function (event) {
+        event.preventDefault(); // Formun default submit işlemini engelle
+        var form = document.getElementById("cihazForm");
+        var selectedVaccines = Array.from(form.elements.Vaccines)
+            .filter(vaccine => vaccine.checked)
+            .map(vaccine => ({
+                name: vaccine.value
+            }));
+
+        const imageElement = document.getElementById("image");
+
+        // Check if the "image" element exists
+        if (!imageElement) {
+            console.error("Element with ID 'image' not found.");
+            return;
+        }
+        const image = imageElement.files[0];
+        //firabase storage upload
+        const storageRef = firebase.storage().ref();
+        const fileRef = storageRef.child('images/' + image.name);
+
+        try {
+            await fileRef.put(image);
+            console.log('File uploaded successfully.');
+        } catch (error) {
+            console.error('Error uploading file:', error);
+        }
+
+        // Diğer form değerlerini al
+        var name = document.getElementById("name").value;
+        var type = document.getElementById("type").value;
+        var age = document.getElementById("age").value;
+        var extraExplanations = document.getElementById("details").value;
+        var userName = document.getElementById("username").value;
+        var userPhone = "256272662";
+        console.log(userName);
+
+        // JSON objesini oluştur
+        var animalData = {
+            Name: name,
+            Type: type,
+            Age: age,
+            ExtraExplanations: extraExplanations,
+            imagePath: await fileRef.getDownloadURL(),
+            userName: userName,
+            userPhone: userPhone,
+            animalVaccines: selectedVaccines,
+        };
+        console.log(animalData);
+
+        //Burada gerekli başka işlemleri yapabilirsin, örneğin API'ye gönderme
+        fetch('https://localhost:7293/api/Animal', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+                // Add any other headers if needed
+            },
+            body: JSON.stringify(animalData)
+        })
+            .then(response => {
+                if (response.ok) {
+                    // Başarılı cevap durumunda alert göster
+                    alert('Başarılı işlem!');
+                } else {
+                    // Hata durumunda alert göster
+                    alert('Başarısız işlem!');
+                }
+            })
+            .catch(error => {
+                // Hata durumunda alert göster
+                alert('Başarısız işlem! Hata: ' + error);
+            });
+
+    });</script>

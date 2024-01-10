@@ -1,0 +1,49 @@
+﻿<Properties StartupConfiguration="{5FEB3678-0504-44ED-92F4-351345EB3686}|https">
+  <MonoDevelop.Ide.Workbench ActiveDocument="AuthWeb/Views/Home/EditPost.cshtml">
+    <Files>
+      <File FileName="AuthWeb/Views/Home/Main.cshtml" Line="31" Column="27" />
+      <File FileName="AuthWeb/Views/Home/MyPost.cshtml" Line="72" Column="69" />
+      <File FileName="AuthWeb/Views/Home/AdoptedPost.cshtml" Line="85" Column="19" />
+      <File FileName="AuthWeb/Views/Home/Animal.cshtml" Line="70" Column="92" />
+      <File FileName="AuthWeb/Controllers/HomeController.cs" Line="73" Column="26" />
+      <File FileName="AuthWeb/ApiGateway/ApiGateway.cs" Line="172" Column="45" />
+      <File FileName="AuthWeb/Models/CreateUserDto.cs" Line="4" Column="39" />
+      <File FileName="AuthWeb/Views/Shared/_ValidationScriptsPartial.cshtml" Line="1" Column="1" />
+      <File FileName="AuthWeb/Views/Shared/_LoginPartial.cshtml" Line="6" Column="1" />
+      <File FileName="AuthWeb/Views/Home/EditPost.cshtml" Line="6" Column="11" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="AuthWeb" expanded="True">
+            <Node name="AuthWeb" expanded="True">
+              <Node name="ApiGateway" expanded="True" />
+              <Node name="Controllers" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Properties" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="Home" expanded="True">
+                  <Node name="EditPost.cshtml" selected="True" />
+                  <Node name="Main.cshtml" expanded="True" />
+                </Node>
+                <Node name="Shared" expanded="True">
+                  <Node name="_Layout.cshtml" expanded="True" />
+                </Node>
+              </Node>
+              <Node name="wwwroot" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/iphonea/Projects/AuthWeb/AuthWeb/Controllers/HomeController.cs" relfile="AuthWeb/Controllers/HomeController.cs" line="95" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.AuthWeb PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
+</Properties>

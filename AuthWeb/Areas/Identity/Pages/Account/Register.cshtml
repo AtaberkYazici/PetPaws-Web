@@ -1,0 +1,78 @@
+@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "_AuthLayout.cshtml";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-12">
+        <form id="cihazForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+             
+
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Input.Email"></label>
+                <input id="email" asp-for="Input.Email" class="form-control" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Password"></label>
+                <input asp-for="Input.Password" class="form-control" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.ConfirmPassword"></label>
+                <input asp-for="Input.ConfirmPassword" class="form-control" />
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Username"></label>
+                <input id="username" asp-for="Input.Username" class="form-control" />
+                <span asp-validation-for="Input.Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Phone"></label>
+                <input id="phone" asp-for="Input.Phone" class="form-control" />
+                <span asp-validation-for="Input.Phone" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.Image"></label>
+                <input type="file" id="image" asp-for="Input.Image" class="form-control" />
+                <span asp-validation-for="Input.Image" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+
+
+    </div>
+
+
+</div>
+
+@section Scripts {
+
+    <partial name="_ValidationScriptsPartial" />
+    <script>function validateForm() {
+            var imageInput = document.getElementById("image");
+
+            // Check if the file input has a selected file
+            if (imageInput.files.length === 0) {
+                // Display an error message or prevent form submission
+                alert("Please select an image.");
+                return false;
+            }
+
+            // If everything is valid, allow the form submission
+            return true;
+        }
+
+
+        </script>
+}
+
+
+

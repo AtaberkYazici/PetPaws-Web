@@ -1,0 +1,55 @@
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+    <style>
+        .user-image {
+            width: 70px; /* Adjust the width as needed */
+            height: 60px; /* Adjust the height as needed */
+            border-radius: 50%; /* Make the image round */
+        }
+    </style>
+    <ul class="navbar-nav">
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <script>
+            // Fetch user data from the API
+            fetch(`https://localhost:7293/api/User/${encodeURIComponent('@UserManager.GetUserName(User)')}`)
+                .then(response => response.json())
+                .then(userData => {
+                    // Set the source of the user image
+                    document.getElementById('userImage').src = userData.imagePath; // Assuming imagePath is the correct property
+                })
+                .catch(error => {
+                    console.error('Error fetching user data:', error);
+                });
+            </script>
+            <li class="nav-item">
+                <img id="userImage" class="user-image img-fluid" alt="User Image" src="" />
+            </li>
+
+            <li class="nav-item">
+                <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+            </li>
+            <li class="nav-item">
+                <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                </form>
+            </li>
+
+        }
+        else
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+            </li>
+        }
+    </ul>
+@section Scripts {
+
+}
+
+

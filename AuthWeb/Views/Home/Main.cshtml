@@ -1,0 +1,123 @@
+﻿@model IEnumerable<AuthWeb.Models.GetAnimalDto>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+
+    <title>PetPaws</title>
+    <style>
+        .search-container {
+            display: flex;
+            justify-content: space-evenly;
+            background-color: #ffbbff; /* Bar arka plan rengi */
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+            .search-container button {
+                background-color: #1874cd; /* Buton arka plan rengi */
+                color: #fff; /* Buton metin rengi */
+                border: none;
+                padding: 10px 20px;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+        .col-md-4 {
+            width: 30%; /* Set the width for each column (card) */
+            padding: 15px; /* Optional padding for the cards */
+        }
+
+        .card-green {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            border: 1px solid #ddd; /* Optional border for the cards */
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+            .card-green img {
+                width: 100%; /* Make the image fill the entire container */
+                height: 200px; /* Set the desired height for each image */
+                object-fit: cover;
+                border-bottom: 1px solid #ddd; /* Optional border for separating image and content */
+            }
+
+        .card-green-content {
+            padding: 15px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <button onclick="searchProducts('dog')">Dog</button>
+        <button onclick="searchProducts('cat')">Cat</button>
+        <button onclick="searchProducts('bird')">Bird</button>
+    </div>
+
+    <section class="main-content">
+
+        <div class="container mt-5">
+            <h2>Latest Posts</h2>
+            <div class="row">
+                @foreach (var animal in Model)
+                {
+
+                        <div class="col-md-4 mb-4">
+                            <div class="card-green">
+                                <a asp-action="Animal" asp-route-AnimalId="@animal.AnimalId">
+                                    <div class="post">
+                                        <div  class="img-container">
+                                            <img src=@animal.imagePath alt="Hayvan Resmi" class="img-fluid rounded">
+
+                                        </div>
+                                        <div class="card-green-content">
+
+                                            <h3>@animal.Name</h3>
+                                            <p>@animal.Age</p>
+                                            <p>@animal.Type</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                }
+
+            </div>
+        </div>
+
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>function searchProducts(animal) {
+            console.log(animal);
+            var searchInput = animal.toLowerCase();
+            console.log(searchInput);
+
+    document.querySelectorAll('.col-md-4').forEach(card => {
+                var animalTypeElement = card.querySelector('.card-green-content p:nth-child(3)');
+
+                // Kontrol: Eğer animalTypeElement null değilse işlemi gerçekleştir
+                if (animalTypeElement) {
+                    var animalType = animalTypeElement.innerText.toLowerCase();
+                    console.log("animal :" + animalType);
+
+                    if (animalType === searchInput) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                } else {
+                    console.error("İkinci p öğesi bulunamadı");
+                }
+            });
+        }</script>
+</body>
+</html>
+
